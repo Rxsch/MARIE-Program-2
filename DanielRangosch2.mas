@@ -1,0 +1,91 @@
+/Daniel Rangosch
+ORG 100
+/Reset variables
+LOAD ZERO
+STORE RESULT
+STORE TEMP
+
+/INPUTS
+INPUT
+STORE A
+skipcond 000
+JUMP cont1
+JUMP error
+cont1, LOAD A
+OUTPUT
+
+INPUT
+STORE B
+skipcond 000
+JUMP cont2
+JUMP error
+cont2, LOAD B
+OUTPUT
+
+INPUT
+STORE C
+skipcond 000
+JUMP cont3
+JUMP error
+cont3, LOAD C
+OUTPUT
+
+INPUT
+STORE D
+skipcond 000
+JUMP cont4
+JUMP error
+cont4, LOAD D
+OUTPUT
+
+/Multiplication A*B
+mult1, LOAD RESULT
+ADD A
+STORE RESULT
+LOAD B
+SUBT ONE
+STORE B
+SKIPCOND 400
+JUMP mult1
+
+/Store result in Temporal variable
+LOAD RESULT
+STORE TEMP
+LOAD ZERO
+STORE RESULT
+
+/Multiplication C*D
+mult2, LOAD RESULT
+ADD C
+STORE RESULT
+LOAD D
+SUBT ONE
+STORE D
+SKIPCOND 400
+JUMP mult2
+
+/ADD RESULTS
+LOAD RESULT
+ADD TEMP
+STORE RESULT
+
+
+/Display result
+LOAD RESULT
+OUTPUT
+HALT
+
+/Error Section
+error, LOAD ZERO
+       OUTPUT
+       HALT
+	
+
+A, DEC 0 /First number
+B, DEC 0 /Second number
+C, DEC 0 /Third number
+D, DEC 0 /Fourth number
+TEMP, DEC 0 /Temporal variable
+RESULT, DEC 0 /Result
+ZERO, DEC 0 /Zero
+ONE, DEC 1 /One
